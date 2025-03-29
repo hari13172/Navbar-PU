@@ -20,7 +20,6 @@ interface MenuRegularProps {
 
 export function MenuRegular({
     menu,
-    index,
     isOpen,
     onMouseEnter,
     onMouseLeave,

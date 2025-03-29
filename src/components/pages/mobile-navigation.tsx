@@ -67,7 +67,7 @@ export function MobileNavigation({ isMenuOpen, onSubmenuClick }: MobileNavigatio
     }
 
     // Update the renderMobileNestedSubmenu function to handle all menu indexes
-    const renderMobileNestedSubmenu = (submenu: Submenu, menuIndex: number) => {
+    const renderMobileNestedSubmenu = (submenu: Submenu,) => {
         if (!hasNestedSubmenus(submenu)) return null
 
         return (
@@ -136,7 +136,7 @@ export function MobileNavigation({ isMenuOpen, onSubmenuClick }: MobileNavigatio
     return (
         <div className={cn("md:hidden", isMenuOpen ? "block" : "hidden")}>
             <div className="space-y-1 px-4 py-3 bg-white rounded-b-[15px] shadow-lg">
-                {menuItems.map((menu, index) => (
+                {menuItems.map((menu) => (
                     <div key={menu.title} className="border-b pb-2">
                         <button
                             onClick={() => toggleMobileSubmenu(menu.title)}
@@ -180,7 +180,7 @@ export function MobileNavigation({ isMenuOpen, onSubmenuClick }: MobileNavigatio
                                             )}
                                         </div>
                                     ) : hasNestedSubmenus(submenu) ? (
-                                        renderMobileNestedSubmenu(submenu, index)
+                                        renderMobileNestedSubmenu(submenu)
                                     ) : (
                                         <a
                                             key={submenu.id}
