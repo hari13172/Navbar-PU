@@ -16,7 +16,7 @@ export function Navbar({ onSubmenuClick }: NavbarProps) {
     return (
         <div className="flex flex-col w-full sticky top-0 z-50">
             {/* Header component with university info */}
-            <Header />
+            <Header onSubmenuClick={onSubmenuClick} />
 
             {/* Top navbar */}
             <div className="bg-gradient-to-r from-[#003087] to-[#4b0082] shadow-lg border-b border-white/20">

@@ -211,7 +211,7 @@ export const menuItems: MenuItem[] = [
     ],
   },
   {
-    title: "Menu 6",
+    title: "Research",
     submenus: [
       { id: "submenu-6-1", title: "Submenu 6-1", href: "#submenu-6-1" },
       { id: "submenu-6-2", title: "Submenu 6-2", href: "#submenu-6-2" },

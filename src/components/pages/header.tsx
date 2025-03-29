@@ -1,8 +1,40 @@
 "use client"
-import { Search, Facebook, Instagram, Twitter, Youtube } from "lucide-react"
-import { Input } from "../../components/ui/input"
+import { Search, Facebook, Instagram, Twitter, Youtube, Home, Map } from "lucide-react"
+"use client"
+import { useState, useRef } from "react"
+import type React from "react"
 
-export function Header() {
+import { Input } from "../../components/ui/input"
+import { SearchResults } from "./search-results"
+
+interface HeaderProps {
+    onSubmenuClick?: (submenuId: string) => void
+}
+
+export function Header({ onSubmenuClick }: HeaderProps) {
+    const [searchTerm, setSearchTerm] = useState("")
+    const [showResults, setShowResults] = useState(false)
+    const searchContainerRef = useRef<HTMLDivElement>(null)
+
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value
+        setSearchTerm(value)
+        setShowResults(value.length >= 2)
+    }
+
+    const handleResultClick = (submenuId: string) => {
+        if (onSubmenuClick) {
+            onSubmenuClick(submenuId)
+        }
+        setSearchTerm("")
+        setShowResults(false)
+    }
+
+    const handleSearchFocus = () => {
+        if (searchTerm.length >= 2) {
+            setShowResults(true)
+        }
+    }
     return (
         <div className="flex flex-col w-full">
             {/* Mini Navbar - with gradient background */}
@@ -11,8 +43,8 @@ export function Header() {
                     <div className="text-sm mb-2 md:mb-0 font-semibold italic">
                         <span className="mr-2">அறிவால் விளையும் உலகு</span>
                     </div>
+                    <span className="mr-2">GSTIN: 33AAAJP0951B1ZP | CSR Reg.No: CSR0061509</span>
                     <div className="flex items-center text-sm">
-                        <span className="mr-2">GSTIN: 33AAAJP0951B1ZP | CSR Reg.No: CSR0061509</span>
                         <div className="flex space-x-3 ml-4">
                             <a href="#" aria-label="Facebook" className="hover:text-yellow-300 transition-all hover:scale-110">
                                 <Facebook className="h-4 w-4" />
@@ -32,7 +64,7 @@ export function Header() {
             </div>
 
             {/* University title section - with gradient background */}
-            <div className=" text-center bg-gradient-to-b from-white to-gray-100 shadow-md">
+            <div className="py-2 text-center bg-gradient-to-b from-white to-gray-100 shadow-md">
                 <div className="container mx-auto flex justify-between items-center px-4">
                     <div className="w-28 h-28 relative">
                         <img
@@ -42,7 +74,6 @@ export function Header() {
                         />
                     </div>
                     <div className="flex-1 text-center">
-                        <h2 className="text-xl md:text-2xl font-bold text-[#4b0082]">ப</h2>
                         <h3 className="text-lg md:text-xl text-[#003087]">அரசு பல்கலைக்கழகம், சேலம்.</h3>
                         <h1 className="text-2xl md:text-3xl font-bold text-[#003087] mt-2 uppercase">PERIYAR UNIVERSITY</h1>
                         <p className="text-sm md:text-base mt-2">NAAC 'A++' Grade with CGPA 3.61 (Cycle - 3)</p>
@@ -73,14 +104,25 @@ export function Header() {
                             href="#"
                             className="bg-[#6a0dad] text-white px-5 py-2 rounded-full flex items-center gap-2 transition-all hover:bg-[#8a2be2] hover:shadow-md hover:-translate-y-0.5"
                         >
+                            <Home className="h-4 w-4" />
                             <span className="text-sm font-medium">Home</span>
                         </a>
-                        <div className="relative w-full md:w-[650px]">
+                        <div className="relative w-full max-w-[650px]" ref={searchContainerRef}>
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
                             <Input
                                 type="search"
-                                placeholder="Search..."
-                                className="w-[50%] pl-10 py-2 rounded-full bg-white/90 border-none shadow-inner"
+                                placeholder="Search menus..."
+                                className="w-full pl-10 py-2 rounded-full bg-white/90 border-none shadow-inner"
+                                value={searchTerm}
+                                onChange={handleSearchChange}
+                                onFocus={handleSearchFocus}
+                            />
+
+                            <SearchResults
+                                searchTerm={searchTerm}
+                                onResultClick={handleResultClick}
+                                onClose={() => setShowResults(false)}
+                                isVisible={showResults}
                             />
                         </div>
                         <div>
@@ -88,6 +130,7 @@ export function Header() {
                                 href="#"
                                 className="bg-[#6a0dad] text-white px-5 py-2 rounded-full flex items-center gap-2 transition-all hover:bg-[#8a2be2] hover:shadow-md hover:-translate-y-0.5"
                             >
+                                <Map className="h-4 w-4" />
                                 <span className="text-sm font-medium">Roadmap</span>
                             </a>
                         </div>
