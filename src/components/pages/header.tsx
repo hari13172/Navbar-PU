@@ -68,7 +68,7 @@ export function Header({ onSubmenuClick }: HeaderProps) {
                 <div className="container mx-auto flex justify-between items-center px-4">
                     <div className="w-28 h-28 relative">
                         <img
-                            src="/src/assets/logo.jpeg"
+                            src="/logo.jpeg"
                             alt="Periyar University Logo"
                             className="object-contain max-h-full drop-shadow-md"
                         />
@@ -85,7 +85,7 @@ export function Header({ onSubmenuClick }: HeaderProps) {
                         <div className="w-full h-full flex items-center justify-center">
                             <div className="w-24 h-24 rounded-full flex items-center justify-center">
                                 <img
-                                    src="/src/assets/IMG.jpg"
+                                    src="/IMG.jpg"
                                     alt="Periyar University Logo"
                                     className="object-contain max-h-full drop-shadow-md"
                                 />
