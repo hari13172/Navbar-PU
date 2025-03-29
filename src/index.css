@@ -36,6 +36,13 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* University colors */
+  --university-purple: #4b0082;
+  --university-blue: #003087;
+  --university-purple-light: #6a0dad;
+  --university-purple-hover: #8a2be2;
+  --university-gold: #ffd700;
 }
 
 .dark {
@@ -70,6 +77,13 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  /* University colors - dark mode */
+  --university-purple: #6a0dad;
+  --university-blue: #1a4db8;
+  --university-purple-light: #8a2be2;
+  --university-purple-hover: #9932cc;
+  --university-gold: #ffd700;
 }
 
 @theme inline {

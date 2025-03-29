@@ -135,12 +135,12 @@ export function MobileNavigation({ isMenuOpen, onSubmenuClick }: MobileNavigatio
 
     return (
         <div className={cn("md:hidden", isMenuOpen ? "block" : "hidden")}>
-            <div className="space-y-2 px-4 py-3">
+            <div className="space-y-1 px-4 py-3 bg-white rounded-b-[15px] shadow-lg">
                 {menuItems.map((menu, index) => (
                     <div key={menu.title} className="border-b pb-2">
                         <button
                             onClick={() => toggleMobileSubmenu(menu.title)}
-                            className="flex w-full items-center justify-between py-2 text-sm font-medium"
+                            className="flex w-full items-center justify-between py-2 text-sm font-medium text-[#003087]"
                         >
                             {menu.title}
                             <ChevronDown
@@ -148,13 +148,13 @@ export function MobileNavigation({ isMenuOpen, onSubmenuClick }: MobileNavigatio
                             />
                         </button>
                         {activeMenus[menu.title] && (
-                            <div className="ml-4 mt-1 space-y-2">
+                            <div className="ml-4 mt-1 space-y-1">
                                 {menu.submenus.map((submenu) =>
                                     submenu.id === "campus" ? (
                                         <div key={submenu.id}>
                                             <button
                                                 onClick={toggleMobileCampusSubmenu}
-                                                className="flex w-full items-center justify-between py-2 text-sm font-medium"
+                                                className="flex w-full items-center justify-between py-2 text-sm font-medium text-[#003087]"
                                             >
                                                 {submenu.title}
                                                 <ChevronRight
@@ -165,12 +165,12 @@ export function MobileNavigation({ isMenuOpen, onSubmenuClick }: MobileNavigatio
                                                 />
                                             </button>
                                             {activeMenus.campus && submenu.submenus && (
-                                                <div className="ml-4 mt-1 space-y-2 border-l-2 pl-2">
+                                                <div className="ml-4 mt-1 space-y-1 border-l-2 border-[#6a0dad] pl-2">
                                                     {submenu.submenus.map((campusSubmenu) => (
                                                         <a
                                                             key={campusSubmenu.id}
                                                             href={campusSubmenu.href}
-                                                            className="block py-2 text-sm text-muted-foreground hover:text-foreground"
+                                                            className="block py-2 text-sm text-[#003087] hover:text-[#6a0dad]"
                                                             onClick={(e) => handleSubmenuClick(e, campusSubmenu.id)}
                                                         >
                                                             {campusSubmenu.title}
@@ -185,7 +185,7 @@ export function MobileNavigation({ isMenuOpen, onSubmenuClick }: MobileNavigatio
                                         <a
                                             key={submenu.id}
                                             href={submenu.href}
-                                            className="block py-2 text-sm text-muted-foreground hover:text-foreground"
+                                            className="block py-2 text-sm text-[#003087] hover:text-[#6a0dad]"
                                             onClick={(e) => handleSubmenuClick(e, submenu.id)}
                                         >
                                             {submenu.title}

@@ -83,8 +83,8 @@ export function MenuAbout({
         >
             <button
                 className={cn(
-                    "px-4 py-2 text-sm font-medium flex items-center gap-1",
-                    isOpen ? "text-primary" : "text-foreground",
+                    "px-4 py-2 text-sm font-semibold text-white flex items-center gap-1 hover:text-yellow-300 transition-all rounded hover:bg-white/10",
+                    isOpen ? "text-yellow-300 bg-white/10" : "",
                 )}
                 onMouseEnter={onMouseEnter}
             >
@@ -94,20 +94,20 @@ export function MenuAbout({
 
             {isOpen && (
                 <div
-                    className="absolute left-0 top-full z-10 mt-1 w-[250px] rounded-md border bg-popover p-4 shadow-md"
+                    className="absolute left-0 top-full z-10 mt-1 w-[250px] rounded-[15px] border-0 bg-white p-2 shadow-lg"
                     ref={(el) => {
                         menuContentRefInternal.current = el
                         menuContentRef(el)
                     }}
                     onMouseEnter={onMouseEnter}
                 >
-                    <ul className="grid gap-3">
+                    <ul className="grid gap-1">
                         {menuItems[0].submenus.map((submenu) => (
                             <li key={submenu.id}>
                                 {submenu.id === "campus" ? (
                                     <div
                                         ref={campusRef}
-                                        className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                        className="block select-none rounded-lg p-3 leading-none no-underline outline-none transition-colors hover:bg-[#6a0dad] hover:text-white"
                                         onMouseEnter={handleCampusMouseEnter}
                                     >
                                         <div className="flex items-center justify-between text-sm font-medium leading-none cursor-pointer">
@@ -123,7 +123,7 @@ export function MenuAbout({
                                 ) : (
                                     <a
                                         href={submenu.href}
-                                        className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                        className="block select-none rounded-lg p-3 leading-none no-underline outline-none transition-colors hover:bg-[#6a0dad] hover:text-white text-[#003087]"
                                         onClick={(e) => handleSubmenuClick(e, submenu.id)}
                                     >
                                         <div className="text-sm font-medium leading-none">{submenu.title}</div>
@@ -139,7 +139,7 @@ export function MenuAbout({
             {showCampusSubmenu && isOpen && (
                 <div
                     ref={campusSubmenuRef}
-                    className="fixed z-50 bg-white rounded-md border shadow-md p-4 w-[200px]"
+                    className="fixed z-50 bg-white rounded-[15px] border-0 shadow-lg p-2 w-[220px]"
                     style={{
                         top: `${campusSubmenuPosition.top}px`,
                         left: `${campusSubmenuPosition.left}px`,
@@ -163,7 +163,7 @@ export function MenuAbout({
                             <a
                                 key={campusSubmenu.id}
                                 href={campusSubmenu.href}
-                                className="block py-2 text-sm hover:text-accent-foreground"
+                                className="block py-2 px-3 text-sm text-[#003087] rounded-lg hover:bg-[#6a0dad] hover:text-white transition-colors"
                                 onClick={(e) => handleSubmenuClick(e, campusSubmenu.id)}
                             >
                                 {campusSubmenu.title}

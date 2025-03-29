@@ -94,7 +94,7 @@ export function TopNavbar({ isMenuOpen, onSubmenuClick }: TopNavbarProps) {
     return (
         <>
             {/* Desktop navigation */}
-            <div className="hidden md:block border-b" ref={navRef} onMouseLeave={handleNavMouseLeave}>
+            <div className="hidden md:block py-3 px-6" ref={navRef} onMouseLeave={handleNavMouseLeave}>
                 <div className="flex justify-center">
                     {/* About Menu (Menu 1) */}
                     <MenuAbout

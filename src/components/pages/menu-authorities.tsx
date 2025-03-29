@@ -12,7 +12,6 @@ interface MenuAuthoritiesProps {
     onMouseEnter: () => void
     onMouseLeave: () => void
     onSubmenuClick: (submenuId: string) => void
-    closeMenu: () => void
     menuRef: (el: HTMLDivElement | null) => void
     menuContentRef: (el: HTMLDivElement | null) => void
 }
@@ -22,7 +21,6 @@ export function MenuAuthorities({
     onMouseEnter,
     onMouseLeave,
     onSubmenuClick,
-    closeMenu,
     menuRef,
     menuContentRef,
 }: MenuAuthoritiesProps) {
@@ -83,9 +81,13 @@ export function MenuAuthorities({
     const handleSubmenuClick = (e: React.MouseEvent, submenuId: string) => {
         e.preventDefault()
         onSubmenuClick(submenuId)
+
+        // Ensure all menus close properly
         setShowNestedSubmenu(null)
         setShowDeepSubmenu(null)
-        closeMenu() // Use the closeMenu function directly
+
+        // Force the parent menu to close by calling onMouseLeave
+        onMouseLeave()
     }
 
     // Helper function to check if a submenu has nested submenus
@@ -251,7 +253,7 @@ export function MenuAuthorities({
                                 {hasNestedSubmenus(submenu) ? (
                                     <div
                                         ref={(el) => {
-                                            nestedSubmenuRefs.current[submenu.id] = el
+                                            nestedSubmenuRefs.current[submenu.id] = el;
                                         }}
                                         className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                                         onMouseEnter={() => handleNestedSubmenuMouseEnter(submenu.id)}

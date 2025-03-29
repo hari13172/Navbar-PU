@@ -48,7 +48,7 @@ export function ContentOutlet({ activeSubmenuId }: ContentOutletProps) {
     }, [content])
 
     return (
-        <Card className="w-full overflow-hidden">
+        <Card className="w-full overflow-hidden bg-white shadow-md">
             <div
                 className={cn(
                     "transition-all duration-300 ease-in-out",
@@ -56,7 +56,7 @@ export function ContentOutlet({ activeSubmenuId }: ContentOutletProps) {
                 )}
             >
                 <CardHeader>
-                    <CardTitle>{content.title}</CardTitle>
+                    <CardTitle className="text-[#003087] text-xl">{content.title}</CardTitle>
                     <CardDescription>{content.description}</CardDescription>
                 </CardHeader>
                 <CardContent>

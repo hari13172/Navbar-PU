@@ -41,8 +41,8 @@ export function MenuRegular({
         <div className="relative" ref={menuRef} onMouseLeave={onMouseLeave}>
             <button
                 className={cn(
-                    "px-4 py-2 text-sm font-medium flex items-center gap-1",
-                    isOpen ? "text-primary" : "text-foreground",
+                    "px-4 py-2 text-sm font-semibold text-white flex items-center gap-1 hover:text-yellow-300 transition-all rounded hover:bg-white/10",
+                    isOpen ? "text-yellow-300 bg-white/10" : "",
                 )}
                 onMouseEnter={onMouseEnter}
             >
@@ -52,16 +52,16 @@ export function MenuRegular({
 
             {isOpen && (
                 <div
-                    className="absolute left-0 top-full z-10 mt-1 w-[250px] rounded-md border bg-popover p-4 shadow-md"
+                    className="absolute left-0 top-full z-10 mt-1 w-[250px] rounded-[15px] border-0 bg-white p-2 shadow-lg"
                     ref={menuContentRef}
                     onMouseEnter={onMouseEnter}
                 >
-                    <ul className="grid gap-3">
+                    <ul className="grid gap-1">
                         {menu.submenus.map((submenu) => (
                             <li key={submenu.id}>
                                 <a
                                     href={submenu.href}
-                                    className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                    className="block select-none rounded-lg p-3 leading-none no-underline outline-none transition-colors hover:bg-[#6a0dad] hover:text-white text-[#003087]"
                                     onClick={(e) => handleSubmenuClick(e, submenu.id)}
                                 >
                                     <div className="text-sm font-medium leading-none">{submenu.title}</div>
