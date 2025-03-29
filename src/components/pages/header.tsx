@@ -20,7 +20,7 @@ export function Header({ onSubmenuClick }: HeaderProps) {
             {/* Part 3: Search bar (sticky) */}
             <HeaderSearchBar onSubmenuClick={onSubmenuClick} />
 
-            {/* Part 4: Menu bar (sticky) */}
+
         </>
     )
 }
