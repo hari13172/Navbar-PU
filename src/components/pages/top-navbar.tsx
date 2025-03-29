@@ -5,6 +5,10 @@ import { menuItems } from "../data/menu-data"
 import { MenuAbout } from "./menu-about"
 import { MenuAuthorities } from "./menu-authorities"
 import { MenuAdministration } from "./menu-administration"
+import { MenuAcademics } from "./menu-academics"
+import { MenuAdmission } from "./menu-admission"
+import { MenuExamination } from "./menu-examination"
+import { MenuStudentLife } from "./menu-student-life"
 import { MenuRegular } from "./menu-regular"
 import { MobileNavigation } from "./mobile-navigation"
 
@@ -128,9 +132,82 @@ export function TopNavbar({ isMenuOpen, onSubmenuClick }: TopNavbarProps) {
                         }}
                     />
 
-                    {/* Regular Menus (Menu 4-10) */}
-                    {menuItems.slice(3).map((menu, i) => {
-                        const index = i + 3 // Adjust index to account for the first three special menus
+                    {/* Academics Menu (Menu 4) */}
+                    <MenuAcademics
+                        isOpen={openMenuIndex === 3}
+                        onMouseEnter={() => handleMenuMouseEnter(3)}
+                        onMouseLeave={() => handleMenuMouseLeave(3)}
+                        onSubmenuClick={onSubmenuClick}
+                        menuRef={(el) => {
+                            menuRefs.current[3] = el
+                        }}
+                        menuContentRef={(el) => {
+                            menuContentRefs.current[3] = el
+                        }}
+                    />
+
+                    {/* Admission Menu (Menu 5) */}
+                    <MenuAdmission
+                        isOpen={openMenuIndex === 4}
+                        onMouseEnter={() => handleMenuMouseEnter(4)}
+                        onMouseLeave={() => handleMenuMouseLeave(4)}
+                        onSubmenuClick={onSubmenuClick}
+                        menuRef={(el) => {
+                            menuRefs.current[4] = el
+                        }}
+                        menuContentRef={(el) => {
+                            menuContentRefs.current[4] = el
+                        }}
+                    />
+
+                    {/* Menu 6 (Regular) */}
+                    <MenuRegular
+                        key={menuItems[5].title}
+                        menu={menuItems[5]}
+                        index={5}
+                        isOpen={openMenuIndex === 5}
+                        onMouseEnter={() => handleMenuMouseEnter(5)}
+                        onMouseLeave={() => handleMenuMouseLeave(5)}
+                        onSubmenuClick={onSubmenuClick}
+                        menuRef={(el) => {
+                            menuRefs.current[5] = el
+                        }}
+                        menuContentRef={(el) => {
+                            menuContentRefs.current[5] = el
+                        }}
+                    />
+
+                    {/* Examination Menu (Menu 7) */}
+                    <MenuExamination
+                        isOpen={openMenuIndex === 6}
+                        onMouseEnter={() => handleMenuMouseEnter(6)}
+                        onMouseLeave={() => handleMenuMouseLeave(6)}
+                        onSubmenuClick={onSubmenuClick}
+                        menuRef={(el) => {
+                            menuRefs.current[6] = el
+                        }}
+                        menuContentRef={(el) => {
+                            menuContentRefs.current[6] = el
+                        }}
+                    />
+
+                    {/* StudentLife Menu (Menu 8) */}
+                    <MenuStudentLife
+                        isOpen={openMenuIndex === 7}
+                        onMouseEnter={() => handleMenuMouseEnter(7)}
+                        onMouseLeave={() => handleMenuMouseLeave(7)}
+                        onSubmenuClick={onSubmenuClick}
+                        menuRef={(el) => {
+                            menuRefs.current[7] = el
+                        }}
+                        menuContentRef={(el) => {
+                            menuContentRefs.current[7] = el
+                        }}
+                    />
+
+                    {/* Regular Menus (Menu 9-10) */}
+                    {menuItems.slice(8).map((menu, i) => {
+                        const index = i + 8 // Adjust index to account for the first eight special menus
                         return (
                             <MenuRegular
                                 key={menu.title}

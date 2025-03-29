@@ -66,7 +66,7 @@ export function MobileNavigation({ isMenuOpen, onSubmenuClick }: MobileNavigatio
         return !!submenu.submenus && submenu.submenus.length > 0
     }
 
-    // Render mobile nested submenu
+    // Update the renderMobileNestedSubmenu function to handle all menu indexes
     const renderMobileNestedSubmenu = (submenu: Submenu, menuIndex: number) => {
         if (!hasNestedSubmenus(submenu)) return null
 
@@ -179,7 +179,7 @@ export function MobileNavigation({ isMenuOpen, onSubmenuClick }: MobileNavigatio
                                                 </div>
                                             )}
                                         </div>
-                                    ) : index === 1 || index === 2 ? (
+                                    ) : hasNestedSubmenus(submenu) ? (
                                         renderMobileNestedSubmenu(submenu, index)
                                     ) : (
                                         <a
