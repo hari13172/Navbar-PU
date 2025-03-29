@@ -601,6 +601,254 @@ export const contentMap: Record<string, ContentItem> = {
       "Information about the University Alumni Association, its activities, membership details, and notable alumni.",
   },
 
+  // Quality Assurance menu items
+  iqac: {
+    title: "IQAC",
+    description: "Internal Quality Assurance Cell",
+    content: "Information about the Internal Quality Assurance Cell, its functions, objectives, and initiatives.",
+  },
+  "about-iqac": {
+    title: "About IQAC",
+    description: "About the Internal Quality Assurance Cell",
+    content:
+      "Detailed information about the Internal Quality Assurance Cell, its establishment, vision, mission, and leadership.",
+  },
+  establishment: {
+    title: "Establishment",
+    description: "Establishment of IQAC",
+    content:
+      "Information about the establishment of the Internal Quality Assurance Cell, its history, and development over the years.",
+  },
+  "vision-mission": {
+    title: "Vision/Mission",
+    description: "Vision and Mission of IQAC",
+    content:
+      "The vision and mission statements of the Internal Quality Assurance Cell, guiding its activities and initiatives.",
+  },
+  chairman: {
+    title: "Chairman",
+    description: "Chairman of IQAC",
+    content:
+      "Information about the Chairman of the Internal Quality Assurance Cell, their role, responsibilities, and contributions.",
+  },
+  members: {
+    title: "Members",
+    description: "Members of IQAC",
+    content:
+      "List of members of the Internal Quality Assurance Cell, including faculty, administrative staff, and external experts.",
+  },
+  meeting: {
+    title: "Meeting",
+    description: "Meetings of IQAC",
+    content:
+      "Information about the meetings of the Internal Quality Assurance Cell, including frequency, agenda, and outcomes.",
+  },
+  mom: {
+    title: "MOM",
+    description: "Minutes of Meetings",
+    content:
+      "Minutes of meetings of the Internal Quality Assurance Cell, documenting discussions, decisions, and action plans.",
+  },
+  atr: {
+    title: "ATR",
+    description: "Action Taken Reports",
+    content:
+      "Action Taken Reports based on the decisions and recommendations of the Internal Quality Assurance Cell meetings.",
+  },
+  document: {
+    title: "Document",
+    description: "Documents of IQAC",
+    content:
+      "Various documents related to the Internal Quality Assurance Cell, including policies, reports, and best practices.",
+  },
+  idp: {
+    title: "IDP",
+    description: "Institutional Development Plan",
+    content:
+      "The Institutional Development Plan, outlining the strategic goals, objectives, and action plans for institutional growth and improvement.",
+  },
+  policies: {
+    title: "Policies",
+    description: "Policies of IQAC",
+    content:
+      "Various policies developed and implemented by the Internal Quality Assurance Cell to enhance institutional quality.",
+  },
+  "best-practices": {
+    title: "Best Practices",
+    description: "Best Practices promoted by IQAC",
+    content:
+      "Best practices identified, promoted, and institutionalized by the Internal Quality Assurance Cell to enhance quality in various aspects of the institution.",
+  },
+  aqar: {
+    title: "AQAR",
+    description: "Annual Quality Assurance Report",
+    content:
+      "Annual Quality Assurance Reports submitted to NAAC, documenting the quality initiatives and achievements of the institution.",
+  },
+  ssr: {
+    title: "SSR",
+    description: "Self-Study Report",
+    content:
+      "Self-Study Reports prepared for NAAC accreditation, providing a comprehensive assessment of the institution's performance across various criteria.",
+  },
+  "cas-application": {
+    title: "CAS Application",
+    description: "Career Advancement Scheme Application",
+    content:
+      "Information about the Career Advancement Scheme application process, guidelines, and requirements for faculty members.",
+  },
+  "feedback-system": {
+    title: "Feedback System",
+    description: "Feedback System of IQAC",
+    content:
+      "Information about the feedback system implemented by the Internal Quality Assurance Cell to collect, analyze, and utilize feedback from various stakeholders.",
+  },
+
+  // NIRF section
+  nirf: {
+    title: "NIRF",
+    description: "National Institutional Ranking Framework",
+    content:
+      "Information about the National Institutional Ranking Framework (NIRF) and our institution's participation and performance.",
+  },
+  "nirf-coordinator": {
+    title: "NIRF Coordinator",
+    description: "Coordinator for NIRF",
+    content: "Information about the coordinator responsible for NIRF-related activities and submissions.",
+  },
+  "nirf-members": {
+    title: "NIRF Members",
+    description: "Members of the NIRF team",
+    content: "List of members who are part of the NIRF team, along with their roles and responsibilities.",
+  },
+  "nirf-mom": {
+    title: "NIRF Minutes of Meeting",
+    description: "Minutes of NIRF meetings",
+    content: "Records of discussions, decisions, and action plans from NIRF team meetings.",
+  },
+  "nirf-ranking": {
+    title: "NIRF Ranking",
+    description: "NIRF ranking of the institution",
+    content:
+      "Information about our institution's ranking in the NIRF, including historical data and improvement strategies.",
+  },
+
+  // IIC section
+  iic: {
+    title: "IIC",
+    description: "Institution's Innovation Council",
+    content:
+      "Information about the Institution's Innovation Council (IIC), its objectives, activities, and achievements.",
+  },
+  "iic-coordinator": {
+    title: "IIC Coordinator",
+    description: "Coordinator for IIC",
+    content: "Information about the coordinator responsible for IIC activities and initiatives.",
+  },
+  "iic-council": {
+    title: "IIC Council",
+    description: "Council members of IIC",
+    content: "List of council members who oversee the functioning of the Institution's Innovation Council.",
+  },
+  "iic-division": {
+    title: "IIC Division",
+    description: "Divisions within IIC",
+    content:
+      "Information about various divisions within the Institution's Innovation Council and their specific focus areas.",
+  },
+  "iic-mom": {
+    title: "IIC Minutes of Meeting",
+    description: "Minutes of IIC meetings",
+    content: "Records of discussions, decisions, and action plans from IIC meetings.",
+  },
+
+  // Ranking Certificates section
+  "ranking-certificates": {
+    title: "Ranking Certificates",
+    description: "Certificates of ranking and accreditation",
+    content:
+      "Certificates and documentation related to our institution's rankings and accreditations from various agencies.",
+  },
+  "naac-certificate": {
+    title: "NAAC Certificate",
+    description: "NAAC accreditation certificate",
+    content:
+      "Certificate of accreditation from the National Assessment and Accreditation Council (NAAC), including grade, score, and validity period.",
+  },
+  "nirf-certificate": {
+    title: "NIRF Certificate",
+    description: "NIRF ranking certificate",
+    content:
+      "Certificate of ranking from the National Institutional Ranking Framework (NIRF), including rank, score, and year of ranking.",
+  },
+
+  // Quick Links content
+  "pucpgrs-link": {
+    title: "PUCPGRS",
+    description: "Post-University College Postgraduate Research Studies",
+    content: "Information about the PUCPGRS program, research opportunities, and resources for postgraduate students.",
+  },
+  "cdoe-link": {
+    title: "CDOE",
+    description: "Center for Distance and Online Education",
+    content: "Information about distance and online education programs, courses, and resources offered by the university.",
+  },
+  "faculty-portal": {
+    title: "Faculty Portal",
+    description: "Portal for faculty members",
+    content: "A dedicated portal for faculty members to access resources, submit grades, and manage course materials.",
+  },
+  "directerate-research": {
+    title: "Directerate of Research",
+    description: "Research initiatives and support",
+    content: "Information about research initiatives, funding opportunities, and support services for researchers.",
+  },
+  "directerate-placements": {
+    title: "Directerate of Placements",
+    description: "Career and placement services",
+    content: "Information about career development, placement services, and job opportunities for students and alumni.",
+  },
+  "duic": {
+    title: "DUIC",
+    description: "University Innovation Center",
+    content: "Information about the University Innovation Center, its initiatives, and opportunities for students and faculty.",
+  },
+  "nisp": {
+    title: "NISP",
+    description: "National Innovation and Startup Policy",
+    content: "Information about the National Innovation and Startup Policy implementation at the university.",
+  },
+  "library-link": {
+    title: "Library",
+    description: "University library resources",
+    content: "Information about library resources, services, digital collections, and facilities available to students and faculty.",
+  },
+  "physical-education": {
+    title: "Physical Education",
+    description: "Sports and physical education", 
+    content: "Information about sports facilities, physical education programs, and athletic opportunities at the university.",
+  },
+  "naan-mudhalvan": {
+    title: "NAAN Mudhalvan",
+    description: "Skill development program",
+    content: "Information about the NAAN Mudhalvan program, its objectives, courses, and benefits for students.",
+  },
+  "puaa-link": {
+    title: "PUAA",
+    description: "University Alumni Association",
+    content: "Information about the University Alumni Association, its activities, events, and opportunities for alumni engagement.",
+  },
+  "ugc": {
+    title: "UGC",
+    description: "University Grants Commission",
+    content: "Information about UGC guidelines, regulations, and initiatives relevant to the university.",
+  },
+  "nad-cell": {
+    title: "NAD Cell",
+    description: "National Academic Depository Cell",
+    content: "Information about the National Academic Depository Cell and its services for digital storage of academic records.",
+  },
+
   // Keep some of the original content for the remaining menus
   "submenu-4-1": {
     title: "Submenu 4-1 Content",

@@ -12,6 +12,7 @@ interface MenuAboutProps {
     onMouseEnter: () => void
     onMouseLeave: () => void
     onSubmenuClick: (submenuId: string) => void
+    closeMenu: () => void
     menuRef: (el: HTMLDivElement | null) => void
     menuContentRef: (el: HTMLDivElement | null) => void
 }
@@ -21,6 +22,7 @@ export function MenuAbout({
     onMouseEnter,
     onMouseLeave,
     onSubmenuClick,
+    closeMenu,
     menuRef,
     menuContentRef,
 }: MenuAboutProps) {
@@ -59,9 +61,7 @@ export function MenuAbout({
         e.preventDefault()
         onSubmenuClick(submenuId)
         setShowCampusSubmenu(false)
-
-        // Force the parent menu to close by calling onMouseLeave
-        onMouseLeave()
+        closeMenu() // Use the closeMenu function directly
     }
 
     return (

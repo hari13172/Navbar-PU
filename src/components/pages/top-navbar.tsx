@@ -9,6 +9,8 @@ import { MenuAcademics } from "./menu-academics"
 import { MenuAdmission } from "./menu-admission"
 import { MenuExamination } from "./menu-examination"
 import { MenuStudentLife } from "./menu-student-life"
+import { MenuQualityAssurance } from "./menu-quality-assurance"
+import { MenuQuickLinks } from "./menu-quick-links"
 import { MenuRegular } from "./menu-regular"
 import { MobileNavigation } from "./mobile-navigation"
 
@@ -85,6 +87,10 @@ export function TopNavbar({ isMenuOpen, onSubmenuClick }: TopNavbarProps) {
         }, 100) // Increased timeout for better detection
     }
 
+    const closeMenu = () => {
+        setOpenMenuIndex(null)
+    }
+
     return (
         <>
             {/* Desktop navigation */}
@@ -96,6 +102,7 @@ export function TopNavbar({ isMenuOpen, onSubmenuClick }: TopNavbarProps) {
                         onMouseEnter={() => handleMenuMouseEnter(0)}
                         onMouseLeave={() => handleMenuMouseLeave(0)}
                         onSubmenuClick={onSubmenuClick}
+                        closeMenu={closeMenu}
                         menuRef={(el) => {
                             menuRefs.current[0] = el
                         }}
@@ -110,6 +117,7 @@ export function TopNavbar({ isMenuOpen, onSubmenuClick }: TopNavbarProps) {
                         onMouseEnter={() => handleMenuMouseEnter(1)}
                         onMouseLeave={() => handleMenuMouseLeave(1)}
                         onSubmenuClick={onSubmenuClick}
+                        closeMenu={closeMenu}
                         menuRef={(el) => {
                             menuRefs.current[1] = el
                         }}
@@ -124,6 +132,7 @@ export function TopNavbar({ isMenuOpen, onSubmenuClick }: TopNavbarProps) {
                         onMouseEnter={() => handleMenuMouseEnter(2)}
                         onMouseLeave={() => handleMenuMouseLeave(2)}
                         onSubmenuClick={onSubmenuClick}
+                        closeMenu={closeMenu}
                         menuRef={(el) => {
                             menuRefs.current[2] = el
                         }}
@@ -138,6 +147,7 @@ export function TopNavbar({ isMenuOpen, onSubmenuClick }: TopNavbarProps) {
                         onMouseEnter={() => handleMenuMouseEnter(3)}
                         onMouseLeave={() => handleMenuMouseLeave(3)}
                         onSubmenuClick={onSubmenuClick}
+                        closeMenu={closeMenu}
                         menuRef={(el) => {
                             menuRefs.current[3] = el
                         }}
@@ -152,6 +162,7 @@ export function TopNavbar({ isMenuOpen, onSubmenuClick }: TopNavbarProps) {
                         onMouseEnter={() => handleMenuMouseEnter(4)}
                         onMouseLeave={() => handleMenuMouseLeave(4)}
                         onSubmenuClick={onSubmenuClick}
+                        closeMenu={closeMenu}
                         menuRef={(el) => {
                             menuRefs.current[4] = el
                         }}
@@ -169,6 +180,7 @@ export function TopNavbar({ isMenuOpen, onSubmenuClick }: TopNavbarProps) {
                         onMouseEnter={() => handleMenuMouseEnter(5)}
                         onMouseLeave={() => handleMenuMouseLeave(5)}
                         onSubmenuClick={onSubmenuClick}
+                        closeMenu={closeMenu}
                         menuRef={(el) => {
                             menuRefs.current[5] = el
                         }}
@@ -183,6 +195,7 @@ export function TopNavbar({ isMenuOpen, onSubmenuClick }: TopNavbarProps) {
                         onMouseEnter={() => handleMenuMouseEnter(6)}
                         onMouseLeave={() => handleMenuMouseLeave(6)}
                         onSubmenuClick={onSubmenuClick}
+                        closeMenu={closeMenu}
                         menuRef={(el) => {
                             menuRefs.current[6] = el
                         }}
@@ -197,6 +210,7 @@ export function TopNavbar({ isMenuOpen, onSubmenuClick }: TopNavbarProps) {
                         onMouseEnter={() => handleMenuMouseEnter(7)}
                         onMouseLeave={() => handleMenuMouseLeave(7)}
                         onSubmenuClick={onSubmenuClick}
+                        closeMenu={closeMenu}
                         menuRef={(el) => {
                             menuRefs.current[7] = el
                         }}
@@ -205,27 +219,35 @@ export function TopNavbar({ isMenuOpen, onSubmenuClick }: TopNavbarProps) {
                         }}
                     />
 
-                    {/* Regular Menus (Menu 9-10) */}
-                    {menuItems.slice(8).map((menu, i) => {
-                        const index = i + 8 // Adjust index to account for the first eight special menus
-                        return (
-                            <MenuRegular
-                                key={menu.title}
-                                menu={menu}
-                                index={index}
-                                isOpen={openMenuIndex === index}
-                                onMouseEnter={() => handleMenuMouseEnter(index)}
-                                onMouseLeave={() => handleMenuMouseLeave(index)}
-                                onSubmenuClick={onSubmenuClick}
-                                menuRef={(el) => {
-                                    menuRefs.current[index] = el
-                                }}
-                                menuContentRef={(el) => {
-                                    menuContentRefs.current[index] = el
-                                }}
-                            />
-                        )
-                    })}
+                    {/* Quality Assurance Menu (Menu 9) */}
+                    <MenuQualityAssurance
+                        isOpen={openMenuIndex === 8}
+                        onMouseEnter={() => handleMenuMouseEnter(8)}
+                        onMouseLeave={() => handleMenuMouseLeave(8)}
+                        onSubmenuClick={onSubmenuClick}
+                        closeMenu={closeMenu}
+                        menuRef={(el) => {
+                            menuRefs.current[8] = el
+                        }}
+                        menuContentRef={(el) => {
+                            menuContentRefs.current[8] = el
+                        }}
+                    />
+
+                    {/* Quick Links Menu (Menu 10) */}
+                    <MenuQuickLinks
+                        isOpen={openMenuIndex === 9}
+                        onMouseEnter={() => handleMenuMouseEnter(9)}
+                        onMouseLeave={() => handleMenuMouseLeave(9)}
+                        onSubmenuClick={onSubmenuClick}
+                        closeMenu={closeMenu}
+                        menuRef={(el) => {
+                            menuRefs.current[9] = el
+                        }}
+                        menuContentRef={(el) => {
+                            menuContentRefs.current[9] = el
+                        }}
+                    />
                 </div>
             </div>
 

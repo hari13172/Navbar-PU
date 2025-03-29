@@ -4,11 +4,9 @@ import type React from "react"
 
 import { ChevronDown } from "lucide-react"
 import { cn } from "../../lib/utils"
-import type { MenuItem } from "../data/menu-data"
+import { menuItems } from "../data/menu-data"
 
-interface MenuRegularProps {
-    menu: MenuItem
-    index: number
+interface MenuQuickLinksProps {
     isOpen: boolean
     onMouseEnter: () => void
     onMouseLeave: () => void
@@ -18,9 +16,7 @@ interface MenuRegularProps {
     menuContentRef: (el: HTMLDivElement | null) => void
 }
 
-export function MenuRegular({
-    menu,
-    index,
+export function MenuQuickLinks({
     isOpen,
     onMouseEnter,
     onMouseLeave,
@@ -28,7 +24,7 @@ export function MenuRegular({
     closeMenu,
     menuRef,
     menuContentRef,
-}: MenuRegularProps) {
+}: MenuQuickLinksProps) {
     const handleSubmenuClick = (e: React.MouseEvent, submenuId: string) => {
         e.preventDefault()
         onSubmenuClick(submenuId)
@@ -46,7 +42,7 @@ export function MenuRegular({
                 )}
                 onMouseEnter={onMouseEnter}
             >
-                {menu.title}
+                {menuItems[9].title}
                 <ChevronDown className={cn("h-4 w-4 transition-transform duration-200", isOpen ? "rotate-180" : "")} />
             </button>
 
@@ -57,7 +53,7 @@ export function MenuRegular({
                     onMouseEnter={onMouseEnter}
                 >
                     <ul className="grid gap-3">
-                        {menu.submenus.map((submenu) => (
+                        {menuItems[9].submenus.map((submenu) => (
                             <li key={submenu.id}>
                                 <a
                                     href={submenu.href}

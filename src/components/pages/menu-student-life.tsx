@@ -12,6 +12,7 @@ interface MenuStudentLifeProps {
     onMouseEnter: () => void
     onMouseLeave: () => void
     onSubmenuClick: (submenuId: string) => void
+    closeMenu: () => void
     menuRef: (el: HTMLDivElement | null) => void
     menuContentRef: (el: HTMLDivElement | null) => void
 }
@@ -21,6 +22,7 @@ export function MenuStudentLife({
     onMouseEnter,
     onMouseLeave,
     onSubmenuClick,
+    closeMenu,
     menuRef,
     menuContentRef,
 }: MenuStudentLifeProps) {
@@ -63,8 +65,8 @@ export function MenuStudentLife({
         // Ensure all menus close properly
         setShowNestedSubmenu(null)
 
-        // Force the parent menu to close by calling onMouseLeave
-        onMouseLeave()
+        // Close the menu immediately
+        closeMenu()
     }
 
     // Helper function to check if a submenu has nested submenus
