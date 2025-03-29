@@ -51,7 +51,7 @@ export function MenuQualityAssurance({
             const rect = nestedSubmenuRefs.current[showNestedSubmenu]!.getBoundingClientRect()
             setNestedSubmenuPosition({
                 top: rect.top,
-                left: rect.left - 210, // Position 210px to the left of the parent menu
+                left: rect.left - 230, // Position 210px to the left of the parent menu
             })
         }
     }, [showNestedSubmenu])
@@ -62,7 +62,7 @@ export function MenuQualityAssurance({
             const rect = nestedSubmenuContentRef.current.getBoundingClientRect()
             setDeepSubmenuPosition({
                 top: rect.top,
-                left: rect.left - 210, // Position 210px to the left of the parent menu
+                left: rect.left - 223, // Position 210px to the left of the parent menu
             })
         }
     }, [showDeepSubmenu])

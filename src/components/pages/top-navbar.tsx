@@ -95,11 +95,11 @@ export function TopNavbar({ isMenuOpen, onSubmenuClick }: TopNavbarProps) {
         <>
             {/* Desktop navigation */}
             <div
-                className="hidden md:block py-1 px-6 border-t border-white/30"
+                className="w-full hidden md:block py-1 px-6 border-t border-white/30"
                 ref={navRef}
                 onMouseLeave={handleNavMouseLeave}
             >
-                <div className="flex justify-center gap-2">
+                <div className="w-full flex justify-center gap-2">
                     {/* About Menu (Menu 1) */}
                     <MenuAbout
                         isOpen={openMenuIndex === 0}

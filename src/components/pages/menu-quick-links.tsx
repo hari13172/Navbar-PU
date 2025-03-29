@@ -48,7 +48,7 @@ export function MenuQuickLinks({
 
             {isOpen && (
                 <div
-                    className="absolute left-0 top-full z-10 mt-1 w-[250px] rounded-[15px] border-0 bg-white p-2 shadow-lg"
+                    className="absolute left-[-80px] top-full z-10 mt-1 w-[250px] rounded-[15px] border-0 bg-white p-2 shadow-lg"
                     ref={menuContentRef}
                     onMouseEnter={onMouseEnter}
                 >

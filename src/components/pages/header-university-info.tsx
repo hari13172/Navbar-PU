@@ -13,7 +13,7 @@ export function HeaderUniversityInfo() {
                 </div>
                 <div className="flex-1 text-center">
                     <h2 className="text-xl md:text-2xl font-bold text-[#4b0082]">பெரியார் பல்கலைக்கழகம்</h2>
-                    <h3 className="text-lg md:text-xl text-[#003087]">அரசு பல்கலைக்கழகம், சேலம்.</h3>
+                    <h3 className="text-lg md:text-xl text-[#4b0082]">அரசு பல்கலைக்கழகம், சேலம்.</h3>
                     <h1 className="text-2xl md:text-3xl font-bold text-[#003087] mt-2 uppercase">PERIYAR UNIVERSITY</h1>
                     <p className="text-sm md:text-base mt-2">NAAC 'A++' Grade with CGPA 3.61 (Cycle - 3)</p>
                     <p className="text-sm md:text-base">State University - NIRF Rank 56 - State Public University Rank 25</p>
