@@ -164,7 +164,7 @@ export function MenuAcademics({
                                         className="block select-none rounded-lg p-3 leading-none no-underline outline-none transition-colors hover:bg-[#6a0dad] hover:text-white"
                                         onMouseEnter={() => handleNestedSubmenuMouseEnter(submenu.id)}
                                     >
-                                        <div className="flex items-center justify-between text-sm font-medium leading-none cursor-pointer text-[#003087]">
+                                        <div className="flex items-center justify-between text-sm font-medium leading-none cursor-pointer text-[#003087] hover:text-white">
                                             {submenu.title}
                                             <ChevronRight
                                                 className={cn(

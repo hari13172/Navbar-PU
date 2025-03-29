@@ -3,6 +3,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* In your CSS file */
+body {
+  font-family: "Noto Sans Tamil", sans-serif;
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);

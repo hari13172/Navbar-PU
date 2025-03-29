@@ -140,7 +140,7 @@ export function MobileNavigation({ isMenuOpen, onSubmenuClick }: MobileNavigatio
                     <div key={menu.title} className="border-b pb-2">
                         <button
                             onClick={() => toggleMobileSubmenu(menu.title)}
-                            className="flex w-full items-center justify-between py-2 text-sm font-medium text-[#003087]"
+                            className="flex w-full items-center justify-between py-2 text-sm font-medium text-[#003087] hover:text-white"
                         >
                             {menu.title}
                             <ChevronDown

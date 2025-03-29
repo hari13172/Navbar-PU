@@ -1,143 +1,27 @@
 "use client"
-import { Search, Facebook, Instagram, Twitter, Youtube, Home, Map } from "lucide-react"
-"use client"
-import { useState, useRef } from "react"
-import type React from "react"
-
-import { Input } from "../../components/ui/input"
-import { SearchResults } from "./search-results"
+import { HeaderTopBar } from "./header-top-bar"
+import { HeaderUniversityInfo } from "./header-university-info"
+import { HeaderSearchBar } from "./header-search-bar"
+import { HeaderMenuBar } from "./header-menu-bar"
 
 interface HeaderProps {
-    onSubmenuClick?: (submenuId: string) => void
+    onSubmenuClick: (submenuId: string) => void
 }
 
 export function Header({ onSubmenuClick }: HeaderProps) {
-    const [searchTerm, setSearchTerm] = useState("")
-    const [showResults, setShowResults] = useState(false)
-    const searchContainerRef = useRef<HTMLDivElement>(null)
-
-    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value
-        setSearchTerm(value)
-        setShowResults(value.length >= 2)
-    }
-
-    const handleResultClick = (submenuId: string) => {
-        if (onSubmenuClick) {
-            onSubmenuClick(submenuId)
-        }
-        setSearchTerm("")
-        setShowResults(false)
-    }
-
-    const handleSearchFocus = () => {
-        if (searchTerm.length >= 2) {
-            setShowResults(true)
-        }
-    }
     return (
-        <div className="flex flex-col w-full">
-            {/* Mini Navbar - with gradient background */}
-            <div className="bg-gradient-to-r from-[#4b0082] to-[#003087] text-white py-3 px-4 md:px-6 rounded-b-[30px] shadow-lg">
-                <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
-                    <div className="text-sm mb-2 md:mb-0 font-semibold italic">
-                        <span className="mr-2">அறிவால் விளையும் உலகு</span>
-                    </div>
-                    <span className="mr-2">GSTIN: 33AAAJP0951B1ZP | CSR Reg.No: CSR0061509</span>
-                    <div className="flex items-center text-sm">
-                        <div className="flex space-x-3 ml-4">
-                            <a href="#" aria-label="Facebook" className="hover:text-yellow-300 transition-all hover:scale-110">
-                                <Facebook className="h-4 w-4" />
-                            </a>
-                            <a href="#" aria-label="Instagram" className="hover:text-yellow-300 transition-all hover:scale-110">
-                                <Instagram className="h-4 w-4" />
-                            </a>
-                            <a href="#" aria-label="Twitter" className="hover:text-yellow-300 transition-all hover:scale-110">
-                                <Twitter className="h-4 w-4" />
-                            </a>
-                            <a href="#" aria-label="Youtube" className="hover:text-yellow-300 transition-all hover:scale-110">
-                                <Youtube className="h-4 w-4" />
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <>
+            {/* Part 1: Mini Navbar (not sticky) */}
+            <HeaderTopBar />
 
-            {/* University title section - with gradient background */}
-            <div className="py-2 text-center bg-gradient-to-b from-white to-gray-100 shadow-md">
-                <div className="container mx-auto flex justify-between items-center px-4">
-                    <div className="w-28 h-28 relative">
-                        <img
-                            src="/logo.jpeg"
-                            alt="Periyar University Logo"
-                            className="object-contain max-h-full drop-shadow-md"
-                        />
-                    </div>
-                    <div className="flex-1 text-center">
-                        <h3 className="text-lg md:text-xl text-[#003087]">அரசு பல்கலைக்கழகம், சேலம்.</h3>
-                        <h1 className="text-2xl md:text-3xl font-bold text-[#003087] mt-2 uppercase">PERIYAR UNIVERSITY</h1>
-                        <p className="text-sm md:text-base mt-2">NAAC 'A++' Grade with CGPA 3.61 (Cycle - 3)</p>
-                        <p className="text-sm md:text-base">State University - NIRF Rank 56 - State Public University Rank 25</p>
-                        <p className="text-sm md:text-base">Salem-636011, Tamil Nadu, India.</p>
-                    </div>
-                    <div className="w-28 h-28 relative">
-                        {/* Periyar portrait image */}
-                        <div className="w-full h-full flex items-center justify-center">
-                            <div className="w-24 h-24 rounded-full flex items-center justify-center">
-                                <img
-                                    src="/IMG.jpg"
-                                    alt="Periyar University Logo"
-                                    className="object-contain max-h-full drop-shadow-md"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {/* Part 2: University title section */}
+            <HeaderUniversityInfo />
 
-            {/* Top Bar - with gradient background */}
-            <div className="bg-gradient-to-r from-[#003087] to-[#4b0082] py-4 shadow-lg">
-                <div className="container mx-auto flex flex-col md:flex-row justify-center items-center px-4 gap-4">
+            {/* Part 3: Search bar (sticky) */}
+            <HeaderSearchBar onSubmenuClick={onSubmenuClick} />
 
-                    <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-full md:w-auto">
-                        <a
-                            href="#"
-                            className="bg-[#6a0dad] text-white px-5 py-2 rounded-full flex items-center gap-2 transition-all hover:bg-[#8a2be2] hover:shadow-md hover:-translate-y-0.5"
-                        >
-                            <Home className="h-4 w-4" />
-                            <span className="text-sm font-medium">Home</span>
-                        </a>
-                        <div className="relative w-full max-w-[650px]" ref={searchContainerRef}>
-                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
-                            <Input
-                                type="search"
-                                placeholder="Search menus..."
-                                className="w-full pl-10 py-2 rounded-full bg-white/90 border-none shadow-inner"
-                                value={searchTerm}
-                                onChange={handleSearchChange}
-                                onFocus={handleSearchFocus}
-                            />
-
-                            <SearchResults
-                                searchTerm={searchTerm}
-                                onResultClick={handleResultClick}
-                                onClose={() => setShowResults(false)}
-                                isVisible={showResults}
-                            />
-                        </div>
-                        <div>
-                            <a
-                                href="#"
-                                className="bg-[#6a0dad] text-white px-5 py-2 rounded-full flex items-center gap-2 transition-all hover:bg-[#8a2be2] hover:shadow-md hover:-translate-y-0.5"
-                            >
-                                <Map className="h-4 w-4" />
-                                <span className="text-sm font-medium">Roadmap</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            {/* Part 4: Menu bar (sticky) */}
+        </>
     )
 }
 
