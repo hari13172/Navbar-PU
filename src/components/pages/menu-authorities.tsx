@@ -12,6 +12,7 @@ interface MenuAuthoritiesProps {
     onMouseEnter: () => void
     onMouseLeave: () => void
     onSubmenuClick: (submenuId: string) => void
+    closeMenu: () => void
     menuRef: (el: HTMLDivElement | null) => void
     menuContentRef: (el: HTMLDivElement | null) => void
 }
@@ -21,6 +22,7 @@ export function MenuAuthorities({
     onMouseEnter,
     onMouseLeave,
     onSubmenuClick,
+    closeMenu,
     menuRef,
     menuContentRef,
 }: MenuAuthoritiesProps) {
@@ -81,13 +83,9 @@ export function MenuAuthorities({
     const handleSubmenuClick = (e: React.MouseEvent, submenuId: string) => {
         e.preventDefault()
         onSubmenuClick(submenuId)
-
-        // Ensure all menus close properly
         setShowNestedSubmenu(null)
         setShowDeepSubmenu(null)
-
-        // Force the parent menu to close by calling onMouseLeave
-        onMouseLeave()
+        closeMenu() // Use the closeMenu function directly
     }
 
     // Helper function to check if a submenu has nested submenus
@@ -104,7 +102,7 @@ export function MenuAuthorities({
         return (
             <div
                 ref={nestedSubmenuContentRef}
-                className="fixed z-50 bg-white rounded-md border shadow-md p-4 w-[200px]"
+                className="fixed z-50 bg-white rounded-[15px] border-0 shadow-lg p-2 w-[220px]"
                 style={{
                     top: `${nestedSubmenuPosition.top}px`,
                     left: `${nestedSubmenuPosition.left}px`,
@@ -131,7 +129,7 @@ export function MenuAuthorities({
                     <div key={nestedSubmenu.id} className="py-2">
                         {nestedSubmenu.submenus ? (
                             <div
-                                className="flex items-center justify-between text-sm hover:text-accent-foreground cursor-pointer"
+                                className="flex items-center justify-between text-sm text-[#003087] hover:text-white px-3 py-2 rounded-lg hover:bg-[#6a0dad] cursor-pointer transition-colors"
                                 onMouseEnter={() => handleDeepSubmenuMouseEnter(nestedSubmenu.id)}
                             >
                                 {nestedSubmenu.title}
@@ -145,7 +143,7 @@ export function MenuAuthorities({
                         ) : (
                             <a
                                 href={nestedSubmenu.href}
-                                className="block text-sm hover:text-accent-foreground"
+                                className="block text-sm text-[#003087] px-3 py-2 rounded-lg hover:bg-[#6a0dad] hover:text-white transition-colors"
                                 onClick={(e) => handleSubmenuClick(e, nestedSubmenu.id)}
                             >
                                 {nestedSubmenu.title}
@@ -169,7 +167,7 @@ export function MenuAuthorities({
         return (
             <div
                 ref={deepSubmenuContentRef}
-                className="fixed z-50 bg-white rounded-md border shadow-md p-4 w-[200px]"
+                className="fixed z-50 bg-white rounded-[15px] border-0 shadow-lg p-2 w-[220px]"
                 style={{
                     top: `${deepSubmenuPosition.top}px`,
                     left: `${deepSubmenuPosition.left}px`,
@@ -196,7 +194,7 @@ export function MenuAuthorities({
                     <a
                         key={deepSubmenu.id}
                         href={deepSubmenu.href}
-                        className="block py-2 text-sm hover:text-accent-foreground"
+                        className="block py-2 px-3 text-sm text-[#003087] rounded-lg hover:bg-[#6a0dad] hover:text-white transition-colors"
                         onClick={(e) => handleSubmenuClick(e, deepSubmenu.id)}
                     >
                         {deepSubmenu.title}
@@ -229,8 +227,8 @@ export function MenuAuthorities({
         >
             <button
                 className={cn(
-                    "px-4 py-2 text-sm font-medium flex items-center gap-1",
-                    isOpen ? "text-primary" : "text-foreground",
+                    "px-4 py-2 text-sm font-semibold text-white flex items-center gap-1 hover:text-yellow-300 transition-all rounded hover:bg-white/10",
+                    isOpen ? "text-yellow-300 bg-white/10" : "",
                 )}
                 onMouseEnter={onMouseEnter}
             >
@@ -240,25 +238,25 @@ export function MenuAuthorities({
 
             {isOpen && (
                 <div
-                    className="absolute left-0 top-full z-10 mt-1 w-[250px] rounded-md border bg-popover p-4 shadow-md"
+                    className="absolute left-0 top-full z-10 mt-1 w-[250px] rounded-[15px] border-0 bg-white p-2 shadow-lg"
                     ref={(el) => {
                         menuContentRefInternal.current = el
                         menuContentRef(el)
                     }}
                     onMouseEnter={onMouseEnter}
                 >
-                    <ul className="grid gap-3">
+                    <ul className="grid gap-1">
                         {menuItems[1].submenus.map((submenu) => (
                             <li key={submenu.id}>
                                 {hasNestedSubmenus(submenu) ? (
                                     <div
                                         ref={(el) => {
-                                            nestedSubmenuRefs.current[submenu.id] = el;
+                                            nestedSubmenuRefs.current[submenu.id] = el
                                         }}
-                                        className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                        className="block select-none rounded-lg p-3 leading-none no-underline outline-none transition-colors hover:bg-[#6a0dad] hover:text-white"
                                         onMouseEnter={() => handleNestedSubmenuMouseEnter(submenu.id)}
                                     >
-                                        <div className="flex items-center justify-between text-sm font-medium leading-none cursor-pointer">
+                                        <div className="flex items-center justify-between text-sm font-medium leading-none cursor-pointer text-[#003087]">
                                             {submenu.title}
                                             <ChevronRight
                                                 className={cn(
@@ -271,7 +269,7 @@ export function MenuAuthorities({
                                 ) : (
                                     <a
                                         href={submenu.href}
-                                        className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                        className="block select-none rounded-lg p-3 leading-none no-underline outline-none transition-colors hover:bg-[#6a0dad] hover:text-white text-[#003087]"
                                         onClick={(e) => handleSubmenuClick(e, submenu.id)}
                                     >
                                         <div className="text-sm font-medium leading-none">{submenu.title}</div>

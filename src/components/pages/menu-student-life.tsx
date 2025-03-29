@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState, useRef, useEffect, JSX } from "react"
+import { useState, useRef, useEffect } from "react"
 import { ChevronDown, ChevronRight } from "lucide-react"
 import { cn } from "../../lib/utils"
 import { menuItems, type Submenu, type NestedSubmenu } from "../data/menu-data"
@@ -13,8 +13,8 @@ interface MenuStudentLifeProps {
     onMouseLeave: () => void
     onSubmenuClick: (submenuId: string) => void
     closeMenu: () => void
-    menuRef: (el: HTMLDivElement | null) => void
-    menuContentRef: (el: HTMLDivElement | null) => void
+    menuRef: React.RefCallback<HTMLDivElement>
+    menuContentRef: React.RefCallback<HTMLDivElement>
 }
 
 export function MenuStudentLife({
@@ -74,47 +74,45 @@ export function MenuStudentLife({
         return !!submenu.submenus && submenu.submenus.length > 0
     }
 
-    const renderNestedSubmenuContent = (): JSX.Element | null => {
+    const renderNestedSubmenuContent = () => {
         if (!showNestedSubmenu || !isOpen) return null
 
         const submenu = menuItems[7].submenus.find((s) => s.id === showNestedSubmenu)
         if (!submenu || !submenu.submenus) return null
 
         return (
-            renderNestedSubmenuContent() && (
-                <div
-                    ref={nestedSubmenuContentRef}
-                    className="fixed z-50 bg-white rounded-[15px] border-0 shadow-lg p-2 w-[220px]"
-                    style={{
-                        top: `${nestedSubmenuPosition.top}px`,
-                        left: `${nestedSubmenuPosition.left}px`,
-                    }}
-                    onMouseEnter={() => {
-                        setShowNestedSubmenu(showNestedSubmenu)
-                        onMouseEnter() // Keep parent menu open
-                    }}
-                    onMouseLeave={() => {
-                        // Check if moving to deep submenu
-                        setTimeout(() => {
-                            if (!menuRefInternal.current?.matches(":hover") && !menuContentRefInternal.current?.matches(":hover")) {
-                                setShowNestedSubmenu(null)
-                            }
-                        }, 50)
-                    }}
-                >
-                    {(submenu.submenus as NestedSubmenu[]).map((nestedSubmenu) => (
-                        <div key={nestedSubmenu.id} className="py-2">
-                            <a
-                                href={nestedSubmenu.href}
-                                className="block text-sm text-[#003087] px-3 py-2 rounded-lg hover:bg-[#6a0dad] hover:text-white transition-colors"
-                                onClick={(e) => handleSubmenuClick(e, nestedSubmenu.id)}
-                            >
-                                {nestedSubmenu.title}
-                            </a>
-                        </div>
-                    ))}
-                </div>
-            )
+            <div
+                ref={nestedSubmenuContentRef}
+                className="fixed z-50 bg-white rounded-[15px] border-0 shadow-lg p-2 w-[220px]"
+                style={{
+                    top: `${nestedSubmenuPosition.top}px`,
+                    left: `${nestedSubmenuPosition.left}px`,
+                }}
+                onMouseEnter={() => {
+                    setShowNestedSubmenu(showNestedSubmenu)
+                    onMouseEnter() // Keep parent menu open
+                }}
+                onMouseLeave={() => {
+                    // Check if moving to deep submenu
+                    setTimeout(() => {
+                        if (!menuRefInternal.current?.matches(":hover") && !menuContentRefInternal.current?.matches(":hover")) {
+                            setShowNestedSubmenu(null)
+                        }
+                    }, 50)
+                }}
+            >
+                {(submenu.submenus as NestedSubmenu[]).map((nestedSubmenu) => (
+                    <div key={nestedSubmenu.id} className="py-2">
+                        <a
+                            href={nestedSubmenu.href}
+                            className="block text-sm text-[#003087] px-3 py-2 rounded-lg hover:bg-[#6a0dad] hover:text-white transition-colors"
+                            onClick={(e) => handleSubmenuClick(e, nestedSubmenu.id)}
+                        >
+                            {nestedSubmenu.title}
+                        </a>
+                    </div>
+                ))}
+            </div>
         )
     }
 
@@ -123,7 +121,7 @@ export function MenuStudentLife({
             className="relative"
             ref={(el) => {
                 menuRefInternal.current = el
-                menuRef(el)
+                menuRef(el || null)
             }}
             onMouseLeave={() => {
                 onMouseLeave()
@@ -151,7 +149,7 @@ export function MenuStudentLife({
                     className="absolute left-0 top-full z-10 mt-1 w-[250px] rounded-[15px] border-0 bg-white p-2 shadow-lg"
                     ref={(el) => {
                         menuContentRefInternal.current = el
-                        menuContentRef(el)
+                        menuContentRef(el || null)
                     }}
                     onMouseEnter={onMouseEnter}
                 >

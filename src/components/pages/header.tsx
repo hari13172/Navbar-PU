@@ -52,7 +52,7 @@ export function Header() {
                     <div className="w-28 h-28 relative">
                         {/* Periyar portrait image */}
                         <div className="w-full h-full flex items-center justify-center">
-                            <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center drop-shadow-md">
+                            <div className="w-24 h-24 rounded-full flex items-center justify-center">
                                 <img
                                     src="/src/assets/IMG.jpg"
                                     alt="Periyar University Logo"
