@@ -32,7 +32,7 @@ export function Header() {
             </div>
 
             {/* University title section - with gradient background */}
-            <div className="py-6 text-center bg-gradient-to-b from-white to-gray-100 shadow-md">
+            <div className=" text-center bg-gradient-to-b from-white to-gray-100 shadow-md">
                 <div className="container mx-auto flex justify-between items-center px-4">
                     <div className="w-28 h-28 relative">
                         <img
@@ -80,7 +80,7 @@ export function Header() {
                             <Input
                                 type="search"
                                 placeholder="Search..."
-                                className="w-full pl-10 py-2 rounded-full bg-white/90 border-none shadow-inner"
+                                className="w-[50%] pl-10 py-2 rounded-full bg-white/90 border-none shadow-inner"
                             />
                         </div>
                         <a

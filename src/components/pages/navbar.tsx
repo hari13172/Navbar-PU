@@ -19,7 +19,7 @@ export function Navbar({ onSubmenuClick }: NavbarProps) {
             <Header />
 
             {/* Top navbar */}
-            <div className="bg-gradient-to-r from-[#003087] to-[#4b0082] shadow-lg">
+            <div className="bg-gradient-to-r from-[#003087] to-[#4b0082] shadow-lg border-b border-white/20">
                 <div className="container mx-auto">
                     <div className="md:hidden px-4 py-3 flex justify-end">
                         <Button

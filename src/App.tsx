@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar onSubmenuClick={handleSubmenuClick} />
-      <main className="flex-1 p-6 overflow-y-auto">
+      <main className="flex-1 p-6 overflow-y-auto mt-4">
         {/* This is the outlet area where content will be displayed */}
         <ContentOutlet activeSubmenuId={activeSubmenuId} />
 
