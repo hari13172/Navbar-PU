@@ -83,12 +83,14 @@ export function Header() {
                                 className="w-[50%] pl-10 py-2 rounded-full bg-white/90 border-none shadow-inner"
                             />
                         </div>
-                        <a
-                            href="#"
-                            className="bg-[#6a0dad] text-white px-5 py-2 rounded-full flex items-center gap-2 transition-all hover:bg-[#8a2be2] hover:shadow-md hover:-translate-y-0.5"
-                        >
-                            <span className="text-sm font-medium">Roadmap</span>
-                        </a>
+                        <div>
+                            <a
+                                href="#"
+                                className="bg-[#6a0dad] text-white px-5 py-2 rounded-full flex items-center gap-2 transition-all hover:bg-[#8a2be2] hover:shadow-md hover:-translate-y-0.5"
+                            >
+                                <span className="text-sm font-medium">Roadmap</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
