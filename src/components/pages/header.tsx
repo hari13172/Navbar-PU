@@ -2,7 +2,7 @@
 import { HeaderTopBar } from "./header-top-bar"
 import { HeaderUniversityInfo } from "./header-university-info"
 import { HeaderSearchBar } from "./header-search-bar"
-import { HeaderMenuBar } from "./header-menu-bar"
+
 
 interface HeaderProps {
     onSubmenuClick: (submenuId: string) => void
