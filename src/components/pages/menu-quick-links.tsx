@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { ChevronDown } from "lucide-react"
 import { cn } from "../../lib/utils"
 import { menuItems } from "../data/menu-data"
@@ -10,6 +9,7 @@ interface MenuQuickLinksProps {
     isOpen: boolean
     onMouseEnter: () => void
     onMouseLeave: () => void
+    onClick: () => void  // Added onClick prop
     onSubmenuClick: (submenuId: string) => void
     closeMenu: () => void
     menuRef: (el: HTMLDivElement | null) => void
@@ -20,6 +20,7 @@ export function MenuQuickLinks({
     isOpen,
     onMouseEnter,
     onMouseLeave,
+    onClick,  // Added to props
     onSubmenuClick,
     closeMenu,
     menuRef,
@@ -28,8 +29,6 @@ export function MenuQuickLinks({
     const handleSubmenuClick = (e: React.MouseEvent, submenuId: string) => {
         e.preventDefault()
         onSubmenuClick(submenuId)
-
-        // Close the menu immediately
         closeMenu()
     }
 
@@ -41,6 +40,7 @@ export function MenuQuickLinks({
                     isOpen ? "text-yellow-300 bg-white/10" : "",
                 )}
                 onMouseEnter={onMouseEnter}
+                onClick={onClick}  // Added onClick handler
             >
                 {menuItems[9].title}
                 <ChevronDown className={cn("h-4 w-4 transition-transform duration-200", isOpen ? "rotate-180" : "")} />
@@ -70,4 +70,3 @@ export function MenuQuickLinks({
         </div>
     )
 }
-

@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useRef, useEffect } from "react"
 import { ChevronDown, ChevronRight } from "lucide-react"
 import { cn } from "../../lib/utils"
@@ -11,6 +10,7 @@ interface MenuAboutProps {
     isOpen: boolean
     onMouseEnter: () => void
     onMouseLeave: () => void
+    onClick: () => void  // Added onClick prop
     onSubmenuClick: (submenuId: string) => void
     closeMenu: () => void
     menuRef: (el: HTMLDivElement | null) => void
@@ -21,6 +21,7 @@ export function MenuAbout({
     isOpen,
     onMouseEnter,
     onMouseLeave,
+    onClick,  // Added to props
     onSubmenuClick,
     closeMenu,
     menuRef,
@@ -33,20 +34,18 @@ export function MenuAbout({
     const menuRefInternal = useRef<HTMLDivElement | null>(null)
     const menuContentRefInternal = useRef<HTMLDivElement | null>(null)
 
-    // Reset campus submenu when main menu closes
     useEffect(() => {
         if (!isOpen) {
             setShowCampusSubmenu(false)
         }
     }, [isOpen])
 
-    // Update campus submenu position when Campus item is hovered
     useEffect(() => {
         if (campusRef.current && showCampusSubmenu) {
             const rect = campusRef.current.getBoundingClientRect()
             setCampusSubmenuPosition({
                 top: rect.top,
-                left: rect.right + 5, // 5px offset from the right edge
+                left: rect.right + 5,
             })
         }
     }, [showCampusSubmenu])
@@ -57,11 +56,15 @@ export function MenuAbout({
         }
     }
 
+    const handleCampusClick = () => {
+        setShowCampusSubmenu(prev => !prev)
+    }
+
     const handleSubmenuClick = (e: React.MouseEvent, submenuId: string) => {
         e.preventDefault()
         onSubmenuClick(submenuId)
         setShowCampusSubmenu(false)
-        closeMenu() // Use the closeMenu function directly
+        closeMenu()
     }
 
     return (
@@ -73,7 +76,6 @@ export function MenuAbout({
             }}
             onMouseLeave={() => {
                 onMouseLeave()
-                // Also reset campus submenu state when leaving the main menu
                 setTimeout(() => {
                     if (!campusSubmenuRef.current?.matches(":hover")) {
                         setShowCampusSubmenu(false)
@@ -87,6 +89,7 @@ export function MenuAbout({
                     isOpen ? "text-yellow-300 bg-white/10" : "",
                 )}
                 onMouseEnter={onMouseEnter}
+                onClick={onClick}  // Added onClick handler
             >
                 {menuItems[0].title}
                 <ChevronDown className={cn("h-4 w-4 transition-transform duration-200", isOpen ? "rotate-180" : "")} />
@@ -109,6 +112,7 @@ export function MenuAbout({
                                         ref={campusRef}
                                         className="block select-none rounded-lg p-3 leading-none no-underline outline-none transition-colors hover:bg-[#6a0dad] hover:text-white"
                                         onMouseEnter={handleCampusMouseEnter}
+                                        onClick={handleCampusClick}  // Added click handler
                                     >
                                         <div className="flex items-center justify-between text-sm font-medium leading-none cursor-pointer">
                                             {submenu.title}
@@ -135,7 +139,6 @@ export function MenuAbout({
                 </div>
             )}
 
-            {/* Separate campus submenu that appears outside the main dropdown */}
             {showCampusSubmenu && isOpen && (
                 <div
                     ref={campusSubmenuRef}
@@ -146,10 +149,9 @@ export function MenuAbout({
                     }}
                     onMouseEnter={() => {
                         setShowCampusSubmenu(true)
-                        onMouseEnter() // Keep About menu open
+                        onMouseEnter()
                     }}
                     onMouseLeave={() => {
-                        // Check if moving back to main menu
                         setTimeout(() => {
                             if (!menuRefInternal.current?.matches(":hover") && !menuContentRefInternal.current?.matches(":hover")) {
                                 setShowCampusSubmenu(false)
@@ -174,4 +176,3 @@ export function MenuAbout({
         </div>
     )
 }
-

@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useRef, useEffect } from "react"
 import { ChevronDown, ChevronRight } from "lucide-react"
 import { cn } from "../../lib/utils"
@@ -11,6 +10,7 @@ interface MenuQualityAssuranceProps {
     isOpen: boolean
     onMouseEnter: () => void
     onMouseLeave: () => void
+    onClick: () => void  // Added onClick prop
     onSubmenuClick: (submenuId: string) => void
     closeMenu: () => void
     menuRef: (el: HTMLDivElement | null) => void
@@ -21,6 +21,7 @@ export function MenuQualityAssurance({
     isOpen,
     onMouseEnter,
     onMouseLeave,
+    onClick,  // Added to props
     onSubmenuClick,
     closeMenu,
     menuRef,
@@ -37,7 +38,6 @@ export function MenuQualityAssurance({
     const menuRefInternal = useRef<HTMLDivElement | null>(null)
     const menuContentRefInternal = useRef<HTMLDivElement | null>(null)
 
-    // Reset submenus when main menu closes
     useEffect(() => {
         if (!isOpen) {
             setShowNestedSubmenu(null)
@@ -45,24 +45,22 @@ export function MenuQualityAssurance({
         }
     }, [isOpen])
 
-    // Update nested submenu position when hovered
     useEffect(() => {
         if (showNestedSubmenu && nestedSubmenuRefs.current[showNestedSubmenu]) {
             const rect = nestedSubmenuRefs.current[showNestedSubmenu]!.getBoundingClientRect()
             setNestedSubmenuPosition({
                 top: rect.top,
-                left: rect.left - 230, // Position 210px to the left of the parent menu
+                left: rect.left - 230,
             })
         }
     }, [showNestedSubmenu])
 
-    // Update deep submenu position when hovered
     useEffect(() => {
         if (showDeepSubmenu && nestedSubmenuContentRef.current) {
             const rect = nestedSubmenuContentRef.current.getBoundingClientRect()
             setDeepSubmenuPosition({
                 top: rect.top,
-                left: rect.left - 223, // Position 210px to the left of the parent menu
+                left: rect.left - 223,
             })
         }
     }, [showDeepSubmenu])
@@ -70,8 +68,13 @@ export function MenuQualityAssurance({
     const handleNestedSubmenuMouseEnter = (submenuId: string) => {
         if (isOpen) {
             setShowNestedSubmenu(submenuId)
-            setShowDeepSubmenu(null) // Close any deep submenu
+            setShowDeepSubmenu(null)
         }
+    }
+
+    const handleNestedSubmenuClick = (submenuId: string) => {
+        setShowNestedSubmenu(prev => prev === submenuId ? null : submenuId)
+        setShowDeepSubmenu(null)
     }
 
     const handleDeepSubmenuMouseEnter = (submenuId: string) => {
@@ -80,19 +83,18 @@ export function MenuQualityAssurance({
         }
     }
 
+    const handleDeepSubmenuClick = (submenuId: string) => {
+        setShowDeepSubmenu(prev => prev === submenuId ? null : submenuId)
+    }
+
     const handleSubmenuClick = (e: React.MouseEvent, submenuId: string) => {
         e.preventDefault()
         onSubmenuClick(submenuId)
-
-        // Ensure all menus close properly
         setShowNestedSubmenu(null)
         setShowDeepSubmenu(null)
-
-        // Close the menu immediately
         closeMenu()
     }
 
-    // Helper function to check if a submenu has nested submenus
     const hasNestedSubmenus = (submenu: Submenu): boolean => {
         return !!submenu.submenus && submenu.submenus.length > 0
     }
@@ -113,10 +115,9 @@ export function MenuQualityAssurance({
                 }}
                 onMouseEnter={() => {
                     setShowNestedSubmenu(showNestedSubmenu)
-                    onMouseEnter() // Keep parent menu open
+                    onMouseEnter()
                 }}
                 onMouseLeave={() => {
-                    // Check if moving to deep submenu
                     setTimeout(() => {
                         if (
                             !deepSubmenuContentRef.current?.matches(":hover") &&
@@ -135,6 +136,7 @@ export function MenuQualityAssurance({
                             <div
                                 className="flex items-center justify-between text-sm text-[#003087] hover:text-white px-3 py-2 rounded-lg hover:bg-[#6a0dad] cursor-pointer transition-colors"
                                 onMouseEnter={() => handleDeepSubmenuMouseEnter(nestedSubmenu.id)}
+                                onClick={() => handleDeepSubmenuClick(nestedSubmenu.id)}  // Added click handler
                             >
                                 {nestedSubmenu.title}
                                 <ChevronRight
@@ -179,10 +181,9 @@ export function MenuQualityAssurance({
                 onMouseEnter={() => {
                     setShowNestedSubmenu(showNestedSubmenu)
                     setShowDeepSubmenu(showDeepSubmenu)
-                    onMouseEnter() // Keep parent menu open
+                    onMouseEnter()
                 }}
                 onMouseLeave={() => {
-                    // Check if moving back to nested submenu
                     setTimeout(() => {
                         if (
                             !nestedSubmenuContentRef.current?.matches(":hover") &&
@@ -217,7 +218,6 @@ export function MenuQualityAssurance({
             }}
             onMouseLeave={() => {
                 onMouseLeave()
-                // Also reset submenu states when leaving the main menu
                 setTimeout(() => {
                     if (
                         !nestedSubmenuContentRef.current?.matches(":hover") &&
@@ -235,6 +235,7 @@ export function MenuQualityAssurance({
                     isOpen ? "text-yellow-300 bg-white/10" : "",
                 )}
                 onMouseEnter={onMouseEnter}
+                onClick={onClick}  // Added onClick handler
             >
                 {menuItems[8].title}
                 <ChevronDown className={cn("h-4 w-4 transition-transform duration-200", isOpen ? "rotate-180" : "")} />
@@ -259,6 +260,7 @@ export function MenuQualityAssurance({
                                         }}
                                         className="block select-none rounded-lg p-3 leading-none no-underline outline-none transition-colors hover:bg-[#6a0dad] hover:text-white"
                                         onMouseEnter={() => handleNestedSubmenuMouseEnter(submenu.id)}
+                                        onClick={() => handleNestedSubmenuClick(submenu.id)}  // Added click handler
                                     >
                                         <div className="flex items-center justify-between text-sm font-medium leading-none cursor-pointer text-[#003087] hover:text-white">
                                             {submenu.title}
@@ -285,12 +287,8 @@ export function MenuQualityAssurance({
                 </div>
             )}
 
-            {/* Render nested submenu for Quality Assurance */}
             {renderNestedSubmenuContent()}
-
-            {/* Render deep submenu for Quality Assurance */}
             {renderDeepSubmenuContent()}
         </div>
     )
 }
-

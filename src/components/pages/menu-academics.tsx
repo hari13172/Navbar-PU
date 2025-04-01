@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useRef, useEffect } from "react"
 import { ChevronDown, ChevronRight } from "lucide-react"
 import { cn } from "../../lib/utils"
@@ -11,6 +10,7 @@ interface MenuAcademicsProps {
     isOpen: boolean
     onMouseEnter: () => void
     onMouseLeave: () => void
+    onClick: () => void  // Added onClick prop
     onSubmenuClick: (submenuId: string) => void
     closeMenu: () => void
     menuRef: (el: HTMLDivElement | null) => void
@@ -21,6 +21,7 @@ export function MenuAcademics({
     isOpen,
     onMouseEnter,
     onMouseLeave,
+    onClick,  // Added to props
     onSubmenuClick,
     closeMenu,
     menuRef,
@@ -34,20 +35,18 @@ export function MenuAcademics({
     const menuRefInternal = useRef<HTMLDivElement | null>(null)
     const menuContentRefInternal = useRef<HTMLDivElement | null>(null)
 
-    // Reset submenus when main menu closes
     useEffect(() => {
         if (!isOpen) {
             setShowNestedSubmenu(null)
         }
     }, [isOpen])
 
-    // Update nested submenu position when hovered
     useEffect(() => {
         if (showNestedSubmenu && nestedSubmenuRefs.current[showNestedSubmenu]) {
             const rect = nestedSubmenuRefs.current[showNestedSubmenu]!.getBoundingClientRect()
             setNestedSubmenuPosition({
                 top: rect.top,
-                left: rect.right + 5, // 5px offset from the right edge
+                left: rect.right + 5,
             })
         }
     }, [showNestedSubmenu])
@@ -58,18 +57,17 @@ export function MenuAcademics({
         }
     }
 
+    const handleNestedSubmenuClick = (submenuId: string) => {
+        setShowNestedSubmenu(prev => prev === submenuId ? null : submenuId)
+    }
+
     const handleSubmenuClick = (e: React.MouseEvent, submenuId: string) => {
         e.preventDefault()
         onSubmenuClick(submenuId)
-
-        // Ensure all menus close properly
         setShowNestedSubmenu(null)
-
-        // Close the menu immediately
         closeMenu()
     }
 
-    // Helper function to check if a submenu has nested submenus
     const hasNestedSubmenus = (submenu: Submenu): boolean => {
         return !!submenu.submenus && submenu.submenus.length > 0
     }
@@ -90,10 +88,9 @@ export function MenuAcademics({
                 }}
                 onMouseEnter={() => {
                     setShowNestedSubmenu(showNestedSubmenu)
-                    onMouseEnter() // Keep parent menu open
+                    onMouseEnter()
                 }}
                 onMouseLeave={() => {
-                    // Check if moving to deep submenu
                     setTimeout(() => {
                         if (!menuRefInternal.current?.matches(":hover") && !menuContentRefInternal.current?.matches(":hover")) {
                             setShowNestedSubmenu(null)
@@ -125,7 +122,6 @@ export function MenuAcademics({
             }}
             onMouseLeave={() => {
                 onMouseLeave()
-                // Also reset submenu states when leaving the main menu
                 setTimeout(() => {
                     if (!nestedSubmenuContentRef.current?.matches(":hover")) {
                         setShowNestedSubmenu(null)
@@ -139,6 +135,7 @@ export function MenuAcademics({
                     isOpen ? "text-yellow-300 bg-white/10" : "",
                 )}
                 onMouseEnter={onMouseEnter}
+                onClick={onClick}  // Added onClick handler
             >
                 {menuItems[3].title}
                 <ChevronDown className={cn("h-4 w-4 transition-transform duration-200", isOpen ? "rotate-180" : "")} />
@@ -163,6 +160,7 @@ export function MenuAcademics({
                                         }}
                                         className="block select-none rounded-lg p-3 leading-none no-underline outline-none transition-colors hover:bg-[#6a0dad] hover:text-white"
                                         onMouseEnter={() => handleNestedSubmenuMouseEnter(submenu.id)}
+                                        onClick={() => handleNestedSubmenuClick(submenu.id)}  // Added click handler
                                     >
                                         <div className="flex items-center justify-between text-sm font-medium leading-none cursor-pointer text-[#003087] hover:text-white">
                                             {submenu.title}
@@ -189,9 +187,7 @@ export function MenuAcademics({
                 </div>
             )}
 
-            {/* Render nested submenu for Academics */}
             {renderNestedSubmenuContent()}
         </div>
     )
 }
-
