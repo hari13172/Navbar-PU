@@ -102,7 +102,7 @@ export function MenuAuthorities({
         return (
             <div
                 ref={nestedSubmenuContentRef}
-                className="fixed z-50 bg-white rounded-[15px] border-0 shadow-lg p-2 w-[220px]"
+                className="fixed z-50 bg-white rounded-[15px] border-0 shadow-lg p-2 w-[220px] hover:text-white"
                 style={{
                     top: `${nestedSubmenuPosition.top}px`,
                     left: `${nestedSubmenuPosition.left}px`,
@@ -129,7 +129,7 @@ export function MenuAuthorities({
                     <div key={nestedSubmenu.id} className="py-2">
                         {nestedSubmenu.submenus ? (
                             <div
-                                className="flex items-center justify-between text-sm text-[#003087] hover:text-white px-3 py-2 rounded-lg hover:bg-[#6a0dad] cursor-pointer transition-colors"
+                                className="flex items-center justify-between text-sm text-[#003087] px-3 py-2 rounded-lg hover:bg-[#6a0dad] hover:text-white  cursor-pointer transition-colors"
                                 onMouseEnter={() => handleDeepSubmenuMouseEnter(nestedSubmenu.id)}
                             >
                                 {nestedSubmenu.title}
@@ -167,7 +167,7 @@ export function MenuAuthorities({
         return (
             <div
                 ref={deepSubmenuContentRef}
-                className="fixed z-50 bg-white rounded-[15px] border-0 shadow-lg p-2 w-[220px]"
+                className="fixed z-50 bg-white rounded-[15px] border-0 shadow-lg p-2 w-[220px] hover:text-white"
                 style={{
                     top: `${deepSubmenuPosition.top}px`,
                     left: `${deepSubmenuPosition.left}px`,
@@ -238,7 +238,7 @@ export function MenuAuthorities({
 
             {isOpen && (
                 <div
-                    className="absolute left-0 top-full z-10 mt-1 w-[250px] rounded-[15px] border-0 bg-white p-2 shadow-lg"
+                    className="absolute left-0 top-full z-10 mt-1 w-[250px] rounded-[15px] border-0 bg-white p-2 shadow-lg hover:text-white"
                     ref={(el) => {
                         menuContentRefInternal.current = el
                         menuContentRef(el)

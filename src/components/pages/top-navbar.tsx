@@ -95,7 +95,7 @@ export function TopNavbar({ isMenuOpen, onSubmenuClick }: TopNavbarProps) {
         <>
             {/* Desktop navigation */}
             <div
-                className="w-full hidden md:block py-1 px-6 border-t border-white/30"
+                className="w-full hidden md:block py-1 px-6 border-t border-white/30 hover:text-white "
                 ref={navRef}
                 onMouseLeave={handleNavMouseLeave}
             >

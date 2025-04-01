@@ -38,7 +38,7 @@ export function HeaderSearchBar({ onSubmenuClick }: HeaderSearchBarProps) {
 
     return (
         <>
-            <div className="bg-gradient-to-r from-[#003087] to-[#4b0082] py-4 shadow-lg sticky top-0 z-50">
+            <div className="bg-gradient-to-r from-[#003087] to-[#4b0082] py-4 h-[18vh] shadow-lg sticky top-0 z-50">
                 <div className=" px-4">
                     <div className="flex items-center justify-center gap-4">
 

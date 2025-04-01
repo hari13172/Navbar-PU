@@ -8,7 +8,7 @@ interface HeaderNavigationBarProps {
 
 export function HeaderNavigationBar({ onSubmenuClick }: HeaderNavigationBarProps) {
     return (
-        <div className="bg-gradient-to-r from-[#003087] to-[#4b0082] py-4 shadow-lg sticky top-[calc(var(--university-info-height,_152px))] z-30">
+        <div className="bg-gradient-to-r from-[#003087] to-[#4b0082] py-4  shadow-lg sticky top-[calc(var(--university-info-height,_152px))] z-30">
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between gap-4">
                     <div className="flex items-center">
